@@ -44,4 +44,5 @@ class Users extends \yii\db\ActiveRecord
             'role' => 'Role',
         ];
     }
+
 }

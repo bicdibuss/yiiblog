@@ -38,6 +38,11 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        $session=Yii::$app->session;
+        if($session['role']!=='admin'){
+            echo 'Admin only';
+            exit;
+        }
         $dataProvider = new ActiveDataProvider([
             'query' => Users::find(),
             /*

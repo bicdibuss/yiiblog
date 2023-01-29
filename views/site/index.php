@@ -5,12 +5,10 @@
 
 use yii\helpers\Html;
 
-$this->title = 'My Yii Application';
+$this->title = 'Blog Yii';
+
 ?>
 <div class="site-index">
-
-
-
     <div class="body-content">
         <ul class="row">
             <?php foreach ($dataProvider->getModels() as $item): ?>

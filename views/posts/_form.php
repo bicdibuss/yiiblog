@@ -19,15 +19,15 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'txt')->textarea(['rows' => 6],['id' => 'myTextarea']) ?>
 
     <?= $form->field($model, 'img')->fileInput(['accept' => 'image/*']) ?>
-
-    <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
+    <?$session=Yii::$app->session?>
+    <?= $form->field($model, 'user')->textInput(['value' =>$session['login']]) ?>
 
     <?= $form->field($model, 'cat')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'data')->textInput([value'=>time()]) ?>
-
+    <span style="display:none">
+    <?= $form->field($model, 'data')->textInput(['value'=>time()]) ?>
+    </span>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-    <script src="tinymce/tinymce.min.js"></script>
+    <script src="../tinymce/tinymce.min.js"></script>
     <script>
         tinymce.init({
             selector: '#posts-txt',

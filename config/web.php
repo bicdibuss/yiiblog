@@ -48,6 +48,7 @@ $config = [
             'showScriptName' => false,
            //enableStrictParsing'=>true,
             'rules' => [
+                '' => 'site/index',
                 'post/<link:.*?>' => 'posts/showpage',
                 'cat/<link:.*?>' => 'posts/showcat',
             ],
@@ -55,6 +56,11 @@ $config = [
 
     ],
     'params' => $params,
+    'modules' => [
+        'admin' => [
+            'class' => \app\modules\admin\Module::class,
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {

@@ -9,6 +9,18 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'My Yii Application';
 ?>
+
+<?php $this->beginBlock('navbar') ?>
+<?= \yii\bootstrap5\Nav::widget([
+    'options' => ['class' => 'navbar-nav'],
+    'items' => [
+        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Edit post', 'url' => ['/site/index']],
+    ]
+]); ?>
+<?php $this->endBlock() ?>
+
+
 <div class="site-index">
 
     <div class="container">

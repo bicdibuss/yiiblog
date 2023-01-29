@@ -18,6 +18,7 @@ use Yii;
  */
 class PostsController extends Controller
 {
+    public $layout = '@app/modules/admin/views/layouts/main.php';
     /**
      * @inheritDoc
      */
@@ -41,14 +42,7 @@ class PostsController extends Controller
      *
      * @return string
      */
-//    public function actionComent()
-//    {
-//        $model = new Coment();
-//        // $data=Yii::$app->request->post();
-//        echo '<pre>';
-//        var_dump($_POST);
-//        exit;
-//    }
+
 
     public function actionShowcat($link)
     {
@@ -86,8 +80,14 @@ class PostsController extends Controller
 
     public function actionIndex()
     {
+        $session=Yii::$app->session;
+          if($session['role']!=='admin')
+          {
+              $req=Posts::find()->where(['user'=>$session['user']]);
+          }
+          else{ $req=Posts::find();}
         $dataProvider = new ActiveDataProvider([
-            'query' => Posts::find(),
+            'query' => $req,
             /*
             'pagination' => [
                 'pageSize' => 50
@@ -113,6 +113,8 @@ class PostsController extends Controller
      */
     public function actionView($id)
     {
+
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

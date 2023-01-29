@@ -30,21 +30,24 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <?php $this->beginBody() ?>
 
 <header id="header">
-    <?php
-    NavBar::begin([
+    <?php NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
+    ]); ?>
+
+    <?php if (isset($this->blocks['navbar'])): ?>
+        <?= $this->blocks['navbar'] ?>
+    <?php else: ?>
+        <?= Nav::widget([
+            'options' => ['class' => 'navbar-nav'],
+            'items' => [
+                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'About', 'url' => ['/site/about']],
+                ['label' => 'Contact', 'url' => ['/site/contact']],
+                Yii::$app->user->isGuest
+                    ? ['label' => 'Login', 'url' => ['/site/login']]
+                    : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
                         'Logout (' . Yii::$app->user->identity->username . ')',
@@ -52,10 +55,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     )
                     . Html::endForm()
                     . '</li>'
-        ]
-    ]);
-    NavBar::end();
-    ?>
+            ]
+        ]); ?>
+    <?php endif; ?>
+
+    <?php NavBar::end(); ?>
 </header>
 
 <main id="main" class="flex-shrink-0" role="main">
